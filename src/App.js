@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
-import ReactDom, { render, hybrate } from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class Main extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = { userName: "" }
+	}
+	handleClick = () => {
+
+	}
+	render() {
+		return(
+		<>
+			<input onChange={this.handleClick} type="text"/>
+		</>);
+	}
 }
 
-class test extends Component {
-
+class Title extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return <h1>{this.children}</h1>;
+	}
 }
-
-export default App;
