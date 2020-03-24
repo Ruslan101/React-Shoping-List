@@ -6,16 +6,20 @@ import ReactDOMServer from 'react-dom/server';
 import * as serviceWorker from './serviceWorker';
 import { Formik } from 'formik';
 import { FixedSizeList as List } from 'react-window';
+import PropTypes from 'prop-types';
+import ReactTestUtils from 'react-dom/test-utils';
+
+// @flow
 
 var element = document.getElementById("root");
 var app_root = document.getElementById("app-root");
 
 function tick() {
     const element = (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {new Date().toLocaleTimeString()}.</h2>
-      </div>
+        <React.StrictMode>
+            <h1>Hello, world!</h1>
+        </React.StrictMode>
+      
     );
     //ReactDOM.render(element, document.getElementById("root"));
   }
@@ -297,7 +301,7 @@ const ExampleRowList = () => (
     </List>
 );
 
-render(<ExampleRowList />, element);
+//render(<ExampleRowList />, element);
 
 const Column = ({ index, style }) => ( <div style={style}>Column {index}</div>);
    
@@ -313,7 +317,53 @@ const ExampleColumnList = () => (
     </List>
 );
 
-render(<ExampleColumnList />, app_root);
+//render(<ExampleColumnList />, app_root);
+
+function Example() {
+    return (
+        <React.StrictMode>
+            <h1>Hello, world!</h1>
+        </React.StrictMode>
+    );
+}
+//render(<Example />, element);
+
+class PropTypesExample extends React.Component {
+    render() {
+        return <h1>Привет, {this.props.name}</h1>;
+    }
+}
+  
+PropTypesExample.propTypes = {
+    name: PropTypes.string
+};
+
+//render(<PropTypesExample name={5} />, element);
+
+class RefExample extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.ref = React.createRef();
+    }
+    handleClick = () => {
+        var color = Math.floor(Math.random() * 16777215).toString(16);
+        this.ref.current.style.color = `#${color}`;
+    }
+    render() {
+        return( 
+            <>
+                <h1 ref={this.ref}>Hello world</h1>
+                <button onClick={this.handleClick}>Click me</button>
+            </>);
+    }
+}
+render(<RefExample />, element);
+
+console.log(React)
+
+
+
 
 
 
@@ -321,4 +371,5 @@ render(<ExampleColumnList />, app_root);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();
+

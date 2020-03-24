@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactDom, { render, hybrate } from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,6 +22,10 @@ function App() {
       </header>
     </div>
   );
+}
+
+class test extends Component {
+
 }
 
 export default App;
