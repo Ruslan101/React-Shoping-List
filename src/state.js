@@ -39,7 +39,6 @@ export function initialUser(user) {
 
 // Reducers
 function shoppinglist(state = new Array(), action) {
-    
     switch(action.type){
         case ADD_ITEM: return [...state, { item: action.item }];
         case CLEAR_ITEM: { state.splice(action.id, 1); return state };
